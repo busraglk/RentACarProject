@@ -1,8 +1,12 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilies.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Concrete
@@ -16,58 +20,77 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
             //iş kodları
             // bir iş sınıfı başka sınıfları newlemez.
 
-            return _carDal.GetAll();
-        }
-
-        public List<Car> GetCarsByBrandId(int Id)
-        {
-            return _carDal.GetAll(c => c.BrandId == Id);
-        }
-
-        public List<Car> GetCarsByColorId(int Id)
-        {
-            return _carDal.GetAll(c => c.ColorId == Id);
-        }
-
-        public void Add(Car car)
-        {
-            if (car.DailyPrice > 0 && car.CarName.Length > 2)
+            if (DateTime.Now.Hour == 16)
             {
-                _carDal.Add(car);
-                Console.WriteLine("Araç Kaydedildi");
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ListedCars);
+        }
+
+        public IDataResult<List<Car>> GetCarsByBrandId(int Id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == Id));
+        }
+
+            public IDataResult<List<Car>> GetCarsByColorId(int Id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == Id));
+        }
+
+        public IResult Add(Car car)
+        {
+            if (car.DailyPrice > 0  && car.Description.Length > 2)
+            {
+                 _carDal.Add(car);
+                return new SuccessResult(Messages.AddedCar);
             }
             else
             {
-                Console.WriteLine("Lütfen Girdiğiniz Bilgileri Kontrol Edin");
+                return new ErrorResult(Messages.FailedCarAddOrUpdate);
             }
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Araç Silindi");
+            return new SuccessResult(Messages.DeletedCar);
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
-            if (car.DailyPrice > 0 && car.CarName.Length > 2)
+            if (car.DailyPrice > 0 && car.Description.Length > 2)
             {
                 _carDal.Update(car);
+                return new SuccessResult(Messages.UpdatedCar);
             }
             else
             {
-                Console.WriteLine("Lütfen Girdiğiniz Bilgileri Kontrol Edin");
+                return new ErrorResult(Messages.FailedCarAddOrUpdate);
             }
         }
 
-        public List<Car> GetByDailyPrice(decimal min)
+        public IDataResult<List<Car>> GetByDailyPrice(decimal min)
         {
-            return _carDal.GetAll(c => c.DailyPrice > min);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice > min));
+        }
+
+        public IDataResult<Car> GetById(int id)
+        {
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            if (DateTime.Now.Hour == 18)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
     }
 }
