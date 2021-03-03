@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -34,11 +35,31 @@ namespace Business.Constants
         public static string ListedUsers = "Kullanıcılar listelendi";
 
 
-        public static string AddedRental = "Araba Kiralama işlemi baraşıyla gerçekleşti.";
-        public static string DeletedRental = "Araba Kiralama işlemi iptal edildi.";
+        public static string AddedRental = "Araba Kiralama işlemi başarıyla gerçekleşti.";
+        public static string DeletedRental = "Araba Kiralama işlemi silindi.";
         public static string UpdatedRental = "Araba Kiralama işlemi güncellendi.";
         public static string FailedRentalAddOrUpdate = "Bu araba henüz teslim edilmediği için kiralayamazsınız.";
-        public static string ReturnedRental = "Kiraladığınız araç teslim edildi.";
+     
 
+        public static string AddedCarImage = "Araba resmi eklendi.";
+        public static string DeletedCarImage = "Araba resmi silindi";
+        public static string UpdatedCarImage = "Araba resmi güncellendi.";
+        public static string ImageFileNotExists = "Böyle bir dosya bulunamadı.";
+        public static string MissmatchingFileExtension ="Uzantı türü .jpeg, .png veya .jpg olmalıdır.";
+        public static string CarImageLimitExceeded = "Bir arabanın en fazla 5 resmi olabilir";
+        public static string CarImageDateExceded = "Zamanlar eşleşmiyor.";
+        public static string CarImagesDeleteExceded = "Resminiz silinmedi";
+        public static string CarImagesUpdateExceded = "Resminiz güncellenemedi";
+
+
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Sisteme giriş başarılı";
+        public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
+        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
+        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string ProductNameAlreadyExists = "Ürün ismi zaten mevcut";
     }
 }

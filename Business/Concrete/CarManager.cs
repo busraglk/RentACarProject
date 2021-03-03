@@ -29,7 +29,7 @@ namespace Business.Concrete
             //iş kodları
             // bir iş sınıfı başka sınıfları newlemez.
 
-            if (DateTime.Now.Hour == 16)
+            if (DateTime.Now.Hour == 15)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
@@ -49,6 +49,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+           
              _carDal.Add(car);
             return new SuccessResult(Messages.AddedCar);            
         }
@@ -59,6 +60,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.DeletedCar);
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
             if (car.DailyPrice > 0 && car.Description.Length > 2)
