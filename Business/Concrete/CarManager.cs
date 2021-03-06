@@ -2,6 +2,8 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilies.Results;
@@ -25,11 +27,10 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [CacheAspect] //key, value
         public IDataResult<List<Car>> GetAll()
         {
-            //iş kodları
-            // bir iş sınıfı başka sınıfları newlemez.
-
+         
             if (DateTime.Now.Hour == 15)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
@@ -49,6 +50,7 @@ namespace Business.Concrete
 
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
            
@@ -63,6 +65,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             if (car.DailyPrice > 0 && car.Description.Length > 2)
@@ -75,12 +78,13 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.FailedCarAddOrUpdate);
             }
         }
-
         public IDataResult<List<Car>> GetByDailyPrice(decimal min)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice > min));
         }
 
+        [CacheAspect]
+        [PerformanceAspect(3)]
         public IDataResult<Car> GetById(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
@@ -93,6 +97,13 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
             }
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        }
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            _carDal.Update(car);        
+            return new SuccessResult(Messages.UpdatedCar);
         }
     }
 }
