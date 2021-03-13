@@ -61,5 +61,7 @@ namespace Business.Constants
 
         public static string AuthorizationDenied = "Yetkiniz yok";
         public static string ProductNameAlreadyExists = "Ürün ismi zaten mevcut";
+        public static string CustomersListed = "Müşteriler listelendi.";
+        public static string RentalsListed = "Kiralanan araçlar listelendi";
     }
 }
