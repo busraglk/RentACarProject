@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
         [HttpGet("getrentaldetails")]
         public IActionResult GetRentalDetails()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(3000);
             var result = _rentalService.GetRentalDetails();
             if (result.Success)
             {
