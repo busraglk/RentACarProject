@@ -24,8 +24,8 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.BrandId equals b.Id
                              join co in context.Colors
                              on c.ColorId equals co.Id
-                             join ca in context.CarImages
-                             on c.Id equals ca.CarId
+                             //join ca in context.CarImages
+                             //on c.Id equals ca.CarId
 
 
                              select new CarDetailDto
@@ -38,7 +38,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = c.DailyPrice,
                                  ModelYear= c.ModelYear,
                                  Description = c.Description,
-                                 ImagePath = ca.ImagePath                        
+                                 ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
 
                              };
                 return result.ToList();
