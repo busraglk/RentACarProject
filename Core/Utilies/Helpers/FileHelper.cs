@@ -9,7 +9,7 @@ namespace Core.Utilities.FileHelper
 {
     public class FileHelper
     {
-        public static string AddAsync(IFormFile file)
+        public static string Add(IFormFile file)
         {
             var result = newPath(file);
 
@@ -33,7 +33,7 @@ namespace Core.Utilities.FileHelper
             return result.Path2;
         }
 
-        public static string UpdateAsync(string sourcePath, IFormFile file)
+        public static string Update(string sourcePath, IFormFile file)
         {
             var result = newPath(file);
 
@@ -57,7 +57,7 @@ namespace Core.Utilities.FileHelper
             return result.Path2;
         }
 
-        public static IResult DeleteAsync(string path)
+        public static IResult Delete(string path)
         {
             try
             {
@@ -77,13 +77,13 @@ namespace Core.Utilities.FileHelper
 
             string fileExtension = ff.Extension;
 
-            var newPath = Guid.NewGuid().ToString("N") + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day+ "_" + DateTime.Now.Year + fileExtension;
+            var creatingUniqueFilename = Guid.NewGuid().ToString("N") + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day+ "_" + DateTime.Now.Year + fileExtension;
 
             string path = Environment.CurrentDirectory + @"\wwwroot\Images";
            
-            string result = $@"{path}\{newPath}";
+            string result = $@"{path}\{creatingUniqueFilename}";
 
-            return (result, $"\\Images\\{newPath}");
+            return (result, $"\\Images\\{creatingUniqueFilename}");
         }
 
 
