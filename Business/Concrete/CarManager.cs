@@ -28,6 +28,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [SecuredOperation("car.add,admin")]
         [CacheAspect] //key, value
         public IDataResult<List<Car>> GetAll()
         {
@@ -39,14 +40,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ListedCars);
         }
 
-        public IDataResult<List<Car>> GetCarsByBrandId(int Id)
+        public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == Id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == id));
         }
 
-            public IDataResult<List<Car>> GetCarsByColorId(int Id)
+            public IDataResult<List<CarDetailDto>> GetCarsByColorId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == Id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == id));
         }
 
         [SecuredOperation("car.add,admin")]
@@ -68,16 +69,10 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
-        {
-            if (car.DailyPrice > 0 && car.Description.Length > 2)
-            {
-                _carDal.Update(car);
-                return new SuccessResult(Messages.UpdatedCar);
-            }
-            else
-            {
-                return new ErrorResult(Messages.FailedCarAddOrUpdate);
-            }
+        { 
+              _carDal.Update(car);
+              return new SuccessResult(Messages.UpdatedCar);
+         
         }
         public IDataResult<List<Car>> GetByDailyPrice(decimal min)
         {
@@ -91,9 +86,9 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(filter));
         }
 
         [TransactionScopeAspect]
@@ -101,6 +96,11 @@ namespace Business.Concrete
         {
             _carDal.Update(car);        
             return new SuccessResult(Messages.UpdatedCar);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetail(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.Id == carId));
         }
     }
 }

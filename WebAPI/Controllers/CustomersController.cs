@@ -80,7 +80,7 @@ namespace WebAPI.Controllers
         [HttpGet("getcustomerdetails")]
         public IActionResult GetCustomerDetails()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
             var result = _customerService.GetCustomerDetails();
             if (result.Success)
             {

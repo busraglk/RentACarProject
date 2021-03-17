@@ -94,9 +94,12 @@ namespace WebAPI
             //app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader()
 
 
-        app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //bu komut wwwroot klasöründe yer alan dosyalara doðrudan eriþim imkaný saðlar.
+            app.UseStaticFiles();
 
             app.UseAuthentication();
 

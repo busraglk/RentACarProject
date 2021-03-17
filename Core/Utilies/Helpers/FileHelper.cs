@@ -73,15 +73,17 @@ namespace Core.Utilities.FileHelper
 
         public static (string newPath, string Path2) newPath(IFormFile file)
         {
-            System.IO.FileInfo ff = new System.IO.FileInfo(file.FileName);
+            FileInfo ff = new FileInfo(file.FileName);
 
             string fileExtension = ff.Extension;
 
-            var creatingUniqueFilename = Guid.NewGuid().ToString("N") + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day+ "_" + DateTime.Now.Year + fileExtension;
+            var newPath = Guid.NewGuid().ToString("N") + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day+ "_" + DateTime.Now.Year + fileExtension;
 
-            string result = $@"{Environment.CurrentDirectory + @"\wwwroot\Images"}\{creatingUniqueFilename}";
+            string path = Environment.CurrentDirectory + @"\wwwroot\Images";
+           
+            string result = $@"{path}\{newPath}";
 
-            return (result, $"\\Images\\{creatingUniqueFilename}");
+            return (result, $"\\Images\\{newPath}");
         }
 
 
