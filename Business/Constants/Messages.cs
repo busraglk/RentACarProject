@@ -63,5 +63,15 @@ namespace Business.Constants
         public static string ProductNameAlreadyExists = "Ürün ismi zaten mevcut";
         public static string CustomersListed = "Müşteriler listelendi.";
         public static string RentalsListed = "Kiralanan araçlar listelendi";
+
+        public static string CarGetAllSuccess = "Araçlar başarılı bir şekilde listelendi.";
+        public static string CarGetAllError = "Araçlar getirilirken bir sorunla karşılaşıldı.";
+
+
+        public static string AddedCreditCard = "Kart başarıyla eklendi.";
+        public static string DeletedCreditCard = "Kart başarıyla silindi.";
+        public static string UpdatedCreditCard = "Kart başarıyla güncellendi.";
+        public static string NotFoundCreditCard = "Bulunamadı";
+
     }
 }
