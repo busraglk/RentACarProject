@@ -1,5 +1,5 @@
 # ReCapProject
-Layered Architecture || Rent A Car 
+## Layered Architecture || Rent A Car 
 
 ### Database:
 ##### Microsoft SQL Server <br/>
