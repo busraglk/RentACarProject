@@ -1,8 +1,13 @@
 # ReCapProject
 Layered Architecture || Rent A Car 
 
-Kurumsal mimariye, SOLID prensiplerine uygun ve kendimizi tekrar etmeyeceğimiz bir proje geliştiriyoruz.
+### Database:
+##### Microsoft SQL Server <br/>
+### Backend:
+![Postman Badge](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
+##### Entities, DataAccess, Business, Core ve WebAPI katmanlarından oluşan bir araba kiralama projesidir. Bu proje Katmanlı mimari yapısı,
+##### SOLID yazılım prensipleri, Web API ve Entity Framework yapısı ile geliştirilmiş olup, JWT entegrasyonu, Transaction, Cache, Performance ve Validation aspectlerinin implementasyonları gerçekleştirilmiştir. Ayrıca Validation için FluentValidation, IoC için Autofac desteği eklenmiştir.
 
-Entities, DataAccess, Business, Core, Web API ve Console katmanlarından oluşan bir projedir.
 
-Asp.NET Core  | Entity Framework | Web API | Autofac 
+
+
