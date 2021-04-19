@@ -32,10 +32,22 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        [HttpGet("getbycustomerid")]
+        public IActionResult GetCustomerById(int id)
         {
-            var result = _customerService.GetById(id);
+            var result = _customerService.GetByCustomerId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getcustomerbyemail")]
+
+        public IActionResult GetCustomerByEmail(string email)
+        {
+            var result = _customerService.GetByEmail(email);
             if (result.Success)
             {
                 return Ok(result);
@@ -88,6 +100,19 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getcustomeruserid")]
+        public IActionResult GetCustomerUserId(int userId)
+        {
+
+            var result = _customerService.GetCustomerUserId(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
 
     }
 }

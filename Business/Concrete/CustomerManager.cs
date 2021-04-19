@@ -44,9 +44,15 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<Customer> GetById(int id)
+        public IDataResult<List<Customer>> GetByCustomerId(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(c => c.Id == id), Messages.CustomersListed);
+        }
+
+        public IDataResult<CustomerDetailDto> GetByEmail(string email)
+        {
+            var getByEmail = _customerDal.GetByEmail(u => u.Email == email);
+            return new SuccessDataResult<CustomerDetailDto>(getByEmail);
         }
 
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
@@ -58,6 +64,12 @@ namespace Business.Concrete
         {
             _customerDal.Update(customer);
             return new SuccessResult(Messages.UpdatedCustomer);
+        }
+
+        public IDataResult<List<CustomerDetailDto>> GetCustomerUserId(int userId)
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(
+            _customerDal.GetCustomerUserId(u => u.UserId == userId));
         }
     }
 }

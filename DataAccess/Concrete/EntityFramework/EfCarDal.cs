@@ -37,7 +37,9 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = c.DailyPrice,
                                  ModelYear= c.ModelYear,
                                  Description = c.Description,
-                                 ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).ToArray()
+                                 ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).ToArray(),
+                                 Status = !context.Rentals.Any(r => r.CarId == c.Id && (r.ReturnDate == null || r.ReturnDate > DateTime.Now)),
+                                 FindexPoint = c.FindexPoint
 
                              };
                 return result.ToList();

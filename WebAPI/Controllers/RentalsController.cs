@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet("getrentalbycarid")]
+        [HttpGet("getbycarid")]
         public IActionResult GetRentalByCarId(int carId)
         {
             var result = _rentalService.GetRentalByCarId(carId);
@@ -88,19 +88,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("isrentable")]
-        public IActionResult IsRentable(Rental rental)
-        {
-            var result = _rentalService.IsRentable(rental);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return Ok(result);
-        }
-    
-
-    [HttpGet("getrentaldetails")]
+        [HttpGet("getrentaldetails")]
         public IActionResult GetRentalDetails()
         {
             Thread.Sleep(1000);

@@ -12,7 +12,9 @@ namespace Business.ValidationRules.FluentValidation
         public UserValidator()
         {
             RuleFor(u => u.FirstName).NotEmpty().WithMessage("İsim boş geçilemez!");
+            RuleFor(u => u.FirstName).MinimumLength(2);
             RuleFor(u => u.LastName).NotEmpty().WithMessage("Soyisim boş geçilemez!");
+            RuleFor(u => u.LastName).MinimumLength(2);
             RuleFor(u => u.Email).NotEmpty();
             RuleFor(u => u.PasswordSalt).NotEmpty();
         }

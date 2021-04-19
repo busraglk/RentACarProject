@@ -19,11 +19,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-               new Car{Id=1, ColorId=1,BrandId=1, ModelYear=2017, DailyPrice= 1000, Description="Yeni Model 1" },
-               new Car{Id=2, ColorId=1,BrandId=2, ModelYear=2018, DailyPrice= 2000, Description="Yeni Model 2" },
-               new Car{Id=3, ColorId=2,BrandId=3, ModelYear=2019, DailyPrice= 3000, Description="Yeni Model 3" },
-               new Car{Id=4, ColorId=2,BrandId=4, ModelYear=2020, DailyPrice= 4000, Description="Yeni Model 4" },
-               new Car{Id=5, ColorId=3,BrandId=2, ModelYear=2021, DailyPrice= 5000, Description="Yeni Model 5" }
+               new Car{Id=1, ColorId=1,BrandId=1, ModelYear="2017", DailyPrice= 1000, Description="Yeni Model 1" },
+               new Car{Id=2, ColorId=1,BrandId=2, ModelYear="2018", DailyPrice= 2000, Description="Yeni Model 2" },
+               new Car{Id=3, ColorId=2,BrandId=3, ModelYear="2019", DailyPrice= 3000, Description="Yeni Model 3" },
+               new Car{Id=4, ColorId=2,BrandId=4, ModelYear="2020", DailyPrice= 4000, Description="Yeni Model 4" },
+               new Car{Id=5, ColorId=3,BrandId=2, ModelYear="2021", DailyPrice= 5000, Description="Yeni Model 5" }
             };
         }
 
@@ -37,7 +37,7 @@ namespace DataAccess.Concrete.InMemory
             // c => = Lambda
             // SingleOrDefault = Döngüyü tek tek dolaşmayı sağlar. Id olan aramalarda genelde bu kullanılır. 
             //(c, döngü de dolaşırken verdiğimiz takma ad)
-           
+
             Car carToDelete = _cars.SingleOrDefault(c => c.Id == c.Id);
         }
 
@@ -83,5 +83,3 @@ namespace DataAccess.Concrete.InMemory
         }
     }
 }
-
-    

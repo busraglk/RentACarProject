@@ -18,7 +18,7 @@ namespace Business.Constants
         public static string AddedCar = "Araba başarıyla eklendi.";
         public static string DeletedCar = "Araba başarıyla silindi.";
         public static string UpdatedCar = "Araba başarıyla güncellendi.";
-        public static string FailedCarAddOrUpdate = "Araba güncellenemedi! Lütfen günlük araç kiralama fiyatının 0'dan büyük olduğuna ya da isim uzunluğunun iki karakterden fazla olmasına dikkat ediniz.";
+
 
         public static string AddedColor = "Renk başarıyla eklendi.";
         public static string DeletedColor = "Renk başarıyla silindi.";
@@ -38,8 +38,9 @@ namespace Business.Constants
         public static string AddedRental = "Araba Kiralama işlemi başarıyla gerçekleşti.";
         public static string DeletedRental = "Araba Kiralama işlemi silindi.";
         public static string UpdatedRental = "Araba Kiralama işlemi güncellendi.";
-        public static string FailedRentalAddOrUpdate = "Bu araba henüz teslim edilmediği için kiralayamazsınız.";
-     
+        public static string CarNotFound = "Bu araç bulunamadı";
+
+
 
         public static string AddedCarImage = "Araba resmi eklendi.";
         public static string DeletedCarImage = "Araba resmi silindi";
@@ -72,6 +73,18 @@ namespace Business.Constants
         public static string DeletedCreditCard = "Kart başarıyla silindi.";
         public static string UpdatedCreditCard = "Kart başarıyla güncellendi.";
         public static string NotFoundCreditCard = "Bulunamadı";
+        public static string CardAlreadyExists = "Kart daha önceden kaydedilmiş";
 
+
+
+        public static string FindexPointInvalid = "Findex puanınız yetersiz";
+        public static string FindexPointEnough = "Findex puanınız yeterli";
+
+        public static string CarAlreadyRented = "Araç henüz teslim edilmedi.";
+        public static string DateSuitable = "Araç bu tarihlerde uygundur.";
+        public static string DateNotSuitable = "Araç bu tarihlerde kiralanmıştır.";
+        public static string CarRented = "Araç başarıyla kiralandı";
+        public static string CarNotRented = "Araç kiralamadı";
+        public static string CustomerFindexPointInvalid = "Hiç Findex Puanı'nız bulunamadı";
     }
 }

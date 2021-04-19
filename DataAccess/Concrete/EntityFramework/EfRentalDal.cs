@@ -11,13 +11,11 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCapContext>, IRentalDal
     {
-        public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
+        public List<RentalDetailDto> GetRentalDetails()
         {
             using (ReCapContext context = new ReCapContext())
             {
-                var result = from r in filter == null
-                             ? context.Rentals
-                             : context.Rentals.Where(filter)
+                var result = from r in context.Rentals
                              join c in context.Cars
                              on r.CarId equals c.Id
                              join b in context.Brands
@@ -30,22 +28,27 @@ namespace DataAccess.Concrete.EntityFramework
                              on cu.UserId equals u.Id
                              select new RentalDetailDto
                              {
-                                 Id = r.Id,
+                                 RentalId = r.Id,
                                  CarId = c.Id,
                                  CarName = c.Description,
-                                 CustomerName = cu.CompanyName,
-                                 BrandName= b.BrandName,
+                                 FirstName = u.FirstName,
+                                 LastName = u.LastName,
+                                 BrandName = b.BrandName,
                                  ColorName = co.ColorName,
+                                 CarModelYear = c.ModelYear,
+                                 CarDailyPrice = c.DailyPrice,
+                                 CarDescription = c.Description,
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate
-
-
 
 
                              };
                 return result.ToList();
 
+
             }
         }
+
     }
-}
+ }
+

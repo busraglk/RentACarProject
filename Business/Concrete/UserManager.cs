@@ -8,6 +8,7 @@ using Core.Utilies.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -54,6 +55,17 @@ namespace Business.Concrete
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
+        }
+
+        public IDataResult<User> GetLastUser()
+        {
+            var lastUser = _userDal.GetAll().LastOrDefault();
+            return new SuccessDataResult<User>(lastUser);
+        }
+
+        public IDataResult<User> GetUserByMail(string email)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
 
         [ValidationAspect(typeof(UserValidator))]
