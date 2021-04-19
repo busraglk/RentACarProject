@@ -1,8 +1,17 @@
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/busragelik/)<br/>
+[![Github Badge](https://img.shields.io/badge/-Github-000?style=quare&labelColor=000&logo=Github&logoColor=white&link=link)](https://github.com/busraglk/RentACar-FrontEnd) RentACar-FrontEnd <br/>
 # ReCapProject
-Layered Architecture || Rent A Car 
+## Layered Architecture || Rent A Car 
 
-Kurumsal mimariye, SOLID prensiplerine uygun ve kendimizi tekrar etmeyeceğimiz bir proje geliştiriyoruz.
+### Database:
+##### Microsoft SQL Server <br/>
+### Backend:
+![Visual Studio Badge](https://img.shields.io/badge/Visual_Studio_2019-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white)
+![.NET Badge](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
+![NuGet Badge](https://img.shields.io/badge/NuGet-004880?style=for-the-badge&logo=nuget&logoColor=white)
+![Postman Badge](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
+##### Entities, DataAccess, Business, Core ve WebAPI katmanlarından oluşan bir araba kiralama projesidir. Bu proje Katmanlı mimari yapısı,SOLID yazılım prensipleri, Web API ve Entity Framework yapısı ile geliştirilmiş olup, JWT entegrasyonu, Transaction, Cache, Performance ve Validation aspectlerinin implementasyonları gerçekleştirilmiştir. Ayrıca Validation için FluentValidation, IoC için Autofac desteği eklenmiştir.
 
-Entities, DataAccess, Business, Core, Web API ve Console katmanlarından oluşan bir projedir.
 
-Asp.NET Core  | Entity Framework | Web API | Autofac 
+
+
