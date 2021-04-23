@@ -99,7 +99,7 @@ namespace Business.Concrete
             var customer = _customerService.GetByCustomerId(customerId).Data[0];
             var car = _carService.GetById(carId).Data;
 
-            customer.FindexPoint = (car.FindexPoint / 2) + customer.FindexPoint;
+            customer.FindexPoint = (car.FindexPoint ) + customer.FindexPoint;
 
             _customerService.Update(customer);
             return new SuccessResult();

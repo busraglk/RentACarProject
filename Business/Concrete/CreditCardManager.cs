@@ -22,9 +22,9 @@ namespace Business.Concrete
         public IResult Add(CreditCard creditCard)
         {
 
-            if (CheckCreditCard(creditCard))
-                return new SuccessResult(Messages.CardAlreadyExists);
-
+            if (!CheckCreditCard(creditCard)) { 
+                return new ErrorResult(Messages.CardAlreadyExists);
+            }
             _creditCardDal.Add(creditCard);
             return new SuccessResult(Messages.AddedCreditCard);
         }
@@ -60,15 +60,12 @@ namespace Business.Concrete
 
         private bool CheckCreditCard(CreditCard card)
         {
-            var creditCard = _creditCardDal.Get(c => c.CustomerId == card.CustomerId);
+            var creditCard = _creditCardDal.Get(c => c.CreditCardNumber == card.CreditCardNumber);
 
-            if (card == null)
+            if (creditCard != null) { 
                 return false;
-
-            if (card.CreditCardNumber == card.CreditCardNumber)
-                return true;
-
-            return false;
+            }
+            return true;
         }
     }
 }
